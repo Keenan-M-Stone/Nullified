@@ -10,7 +10,9 @@ $$\forall S:\; S \in S \;\Longrightarrow\; S = \emptyset$$
 
 **Physical SCN** (the only viable interpretation): perturbation theory is computed using the **skeleton expansion** — only 1PI self-energy diagrams with bare propagators, without Dyson resummation. This is equivalent to standard QFT at 1-loop but differs at 2-loop and beyond. See `Theory/05_consequences_and_predictions.md` for the full formulation.
 
-The connection to the set-theoretic axiom is *motivational*, not deductive: the axiom inspired the filtering rule, but Physical SCN stands or falls on its own physics (specifically, the 2-loop coefficient C₂).
+**Status: FALSIFIED.** The 2-loop electron $g-2$ coefficient $C_2$ under Physical SCN differs from the standard value because the self-energy insertion class ($C_2^{SE} \neq 0$) is removed. This produces a deviation of $\geq 415\sigma$ from experiment (even under the most conservative assumptions). See `Theory/scn_c2_investigation.ipynb` for the definitive computation.
+
+The connection to the set-theoretic axiom is *motivational*, not deductive: the axiom inspired the filtering rule, but Physical SCN stands or falls on its own physics — and it falls.
 
 ## Project Structure
 
@@ -72,7 +74,7 @@ python -c "from src.engine.pipeline import run_full_analysis; print(run_full_ana
 | Running α (1-loop) | Identical | ✓ |
 | Lamb shift (1-loop) | Identical (1-loop SE preserved) | ✓ Resolved |
 | Formulation comparison | 4 interpretations tested, 1 viable | ✓ Done |
-| g-2 at 2-loop (C₂) | **Different** — 3/7 diagrams nullified | 🔬 Make-or-break |
+| g-2 at 2-loop (C₂) | **Different** — 3/7 diagrams nullified | ❌ **FALSIFIED** |
 | QCD asymptotic freedom | **Preserved** under Physical SCN | ✓ Resolved |
 | SCN axiom novelty | **Confirmed** — no prior work | ✓ Novel |
 
@@ -94,7 +96,15 @@ python -c "from src.engine.pipeline import run_full_analysis; print(run_full_ana
 
 The key finding: Physical SCN is equivalent to the **skeleton expansion** of perturbative QFT (Weinberg Ch.12, Zinn-Justin Ch.9). All 1PI self-energy diagrams survive; only non-1PI self-energy insertions and Dyson resummation are excluded. This is identical to standard QFT at 1-loop, but at 2-loop, 3 of 7 vertex diagrams are nullified (the SE-insertion diagrams I(a), I(b), I(c)), while 4 survive (VP insertion II, crossed photon III(a), ladder III(b), light-by-light III(c)).
 
-The C₂ coefficient under Physical SCN (C₂^PHY) is the definitive test: any O(0.1) change would be visible at ~10⁵σ given current experimental precision on a_e.
+### C₂ Computation: Physical SCN Falsified
+
+The SE-insertion class contributes a nonzero $C_2^{SE} \neq 0$ to the magnetic form factor $F_2(0)$, proven rigorously:
+- The renormalized self-energy $\Sigma_R(k^2) \neq 0$ for $k^2 \neq m^2$
+- The Schwinger kernel samples off-shell momenta over a continuous range
+- No Ward identity constrains the magnetic form factor from SE insertions
+- Even $C_2^{SE} = 10^{-5}$ produces a 415σ exclusion; the estimate $C_2^{SE} \approx 0.77$ gives 32Mσ
+
+See `Theory/scn_c2_investigation.ipynb` for the full computation.
 
 ### θ₀ = 2/9 — Lepton Mass Formula (Independent of SCN)
 
