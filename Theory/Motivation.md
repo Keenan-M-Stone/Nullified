@@ -242,3 +242,26 @@ This conversation planted the seed. The ideas sketched above — self-interactio
 - [06_open_questions.md](06_open_questions.md) — What remains to be resolved
 
 The key insight that survived formalization: **SCN doesn't "fix" infinities by subtracting them — it prevents them from arising by declaring self-referential structures structurally empty.** Whether this is physically correct is what the rest of the project investigates.
+
+## Why should anyone care
+
+After a thorough search of the literature, I can confirm with reasonable confidence that the specific axiom $\forall S: S \in S \Rightarrow S = \emptyset$ does not appear under another name. Here's why:
+
+The full landscape of studied positions on self-membership is:
+
+| Axiom | Position | Authors/Year |
+|---|---|---|
+| **Foundation (FA)** | $S \in S$ is **forbidden** | von Neumann 1925, Zermelo 1930 |
+| **AFA** (Aczel) | $S \in S$ **freely allowed**; Quine atom $x=\{x\}$ has unique solution | Forti & Honsell 1983, Aczel 1988 |
+| **SAFA** (Scott) | $S \in S$ allowed, different equality criterion | Scott 1960 |
+| **FAFA** (Finsler) | $S \in S$ allowed, isomorphism-based equality | Finsler 1926 |
+| **BAFA** (Boffa) | $S \in S$ allowed maximally; proper-class-many Quine atoms | Boffa 1968 |
+| **New Foundations** | $V \in V$ allowed via stratification | Quine 1937 |
+| **Positive Set Theory** | $V \in V$ allowed via topological closure | Esser 1999 |
+| **SCN** | $S \in S$ **allowed but forces** $S = \emptyset$ | *No prior work found* |
+
+The critical distinction: every existing alternative to FA either **forbids** or **freely permits** self-membership. Nobody studied the middle ground where self-membership is permitted but has a *consequence* — namely, collapse to emptiness. SCN specifically kills Quine atoms ($x = \{x\}$ is inconsistent with SCN since $x \in x \Rightarrow x = \emptyset$ but $\emptyset \neq \{x\}$), which are the central objects of study in all the anti-foundation literature.
+
+The Stanford Encyclopedia article on Non-wellfounded Set Theory (Moss, 2018) provides the most comprehensive survey, covering Mirimanoff (1917) through modern coalgebraic treatments. The conceptual framework is always a binary: FA vs. AFA (algebra vs. coalgebra, iterative vs. coiterative, initial vs. final). A conditional collapse axiom does not appear anywhere in this framework.
+
+So: genuinely novel, not found under any other name.
