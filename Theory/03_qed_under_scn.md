@@ -1,5 +1,7 @@
 # QED Under SCN: Detailed Analysis
 
+> **⚠️ Formulation Update (important):** The analysis below was originally written under the "Diagrammatic SCN" interpretation, which nullifies ALL self-energy diagrams. Systematic testing (`scn_formulations.ipynb`) showed that Diagrammatic SCN is **ruled out** — it predicts a Lamb shift of ~40 MHz vs the measured 1057 MHz. The only viable interpretation is **Physical SCN** (skeleton expansion), which preserves all 1PI self-energy diagrams at 1-loop. See §7 below for the corrected classification. Sections 2–6 are retained for historical context but the conclusions in §3.1 are superseded.
+
 ## 1. QED Review
 
 Quantum Electrodynamics describes the interaction of charged fermions (electrons, muons, etc.) with photons via the Lagrangian:
@@ -214,13 +216,57 @@ This is within the precision of many experiments but could be distinguishable in
 
 ---
 
-## 7. Key Takeaway
+## 7. Physical SCN: The Corrected Classification
 
-SCN-filtered QED is a **consistent, gauge-invariant** theory at one loop that:
-1. Preserves the Schwinger anomalous magnetic moment
-2. Preserves the running of $\alpha$ from vacuum polarization
-3. Eliminates mass renormalization (bare mass = physical mass at one loop)
-4. Satisfies Ward identities
-5. Makes distinct predictions from standard QED at $\mathcal{O}(\alpha^2)$ and beyond
+The systematic formulation comparison (`scn_formulations.ipynb`) tested four SCN interpretations against experiment. Only **Physical SCN** (skeleton expansion) survives:
 
-The framework is testable and the deviations are computable.
+**Definition:** Physical SCN computes perturbation theory using 1PI self-energy diagrams with bare propagators only, without Dyson resummation. Equivalently: use the skeleton expansion (Weinberg Ch.12, Zinn-Justin Ch.9).
+
+### 7.1 Corrected One-Loop Classification
+
+| Diagram | Diagrammatic SCN (§3) | Physical SCN (correct) |
+|---------|----------------------|----------------------|
+| Electron self-energy $\Sigma^{(1)}$ | Nullified | **SURVIVES** (1PI diagram) |
+| Vacuum polarization $\Pi^{(1)}$ | Survives | **SURVIVES** (1PI diagram) |
+| Vertex correction $\Lambda^{(1)}$ | Survives | **SURVIVES** |
+
+Under Physical SCN, **all 1-loop QED diagrams survive** — the theory is identical to standard QED at 1-loop by construction. This is why the Lamb shift (1057 MHz) and Schwinger g-2 (α/2π) are reproduced exactly.
+
+> **Honesty note:** 1-loop agreement is a consistency check, not evidence for Physical SCN. The definition was chosen to agree at 1-loop.
+
+### 7.2 Two-Loop Classification Under Physical SCN
+
+At two loops, Physical SCN differs from standard QED. Of the 7 two-loop QED vertex diagrams contributing to $a_e$:
+
+| Diagram | Description | Physical SCN |
+|---------|-------------|-------------|
+| I(a) | SE insertion on upper fermion | **NULLIFIED** (non-1PI SE insertion) |
+| I(b) | SE insertion on lower fermion | **NULLIFIED** |
+| I(c) | SE insertion on internal fermion | **NULLIFIED** |
+| II | VP insertion on internal photon | **SURVIVES** (skeleton) |
+| III(a) | Crossed photon exchange | **SURVIVES** (skeleton) |
+| III(b) | Ladder diagram | **SURVIVES** (skeleton) |
+| III(c) | Light-by-light scattering | **SURVIVES** (skeleton) |
+
+The 4 surviving diagrams are exactly the **skeleton diagrams** — those with no self-energy subdiagram insertions.
+
+### 7.3 The Make-or-Break Test
+
+The two-loop coefficient in standard QED:
+
+$$C_2^{\text{std}} = -0.328478965579\ldots$$
+
+Under Physical SCN, only the 4 skeleton diagrams contribute to $C_2^{\text{PHY}}$. The experimental precision on $a_e$ (0.24 ppb) means any O(0.1) change in $C_2$ would be visible at ~10⁵σ. Computing $C_2^{\text{PHY}}$ is **the decisive test** of Physical SCN.
+
+### 7.4 Gauge Invariance Under Physical SCN
+
+The 1PI effective action $\Gamma[\phi]$ satisfies Slavnov-Taylor identities by construction. Physical SCN = "use $\Gamma$, don't iterate the Dyson equation" inherits gauge invariance from this. In background field formalism, individual skeleton diagrams are gauge-invariant. An explicit 2-loop computation would provide definitive confirmation but is not yet done.
+
+### 7.5 Skeleton Expansion Connection
+
+Physical SCN is equivalent to the **skeleton expansion** in standard QFT:
+- All propagators are bare $G_0$
+- All self-energy insertions are 1PI (no iteration)
+- The coupling constant is the renormalized coupling (from VP, which is 1PI)
+
+This means Physical SCN is not a new physics, but rather a different organizational scheme for perturbation theory. The non-trivial question is whether this scheme produces the same results order by order — which is answered by computing $C_2^{\text{PHY}}$.

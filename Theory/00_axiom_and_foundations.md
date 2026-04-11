@@ -75,6 +75,12 @@ Standard QFT handles this via **renormalization** — absorbing the self-referen
 
 The question is whether this nullification gives physically correct results. That is the subject of the remaining documents.
 
+### 5.1 The Skeleton Expansion Connection
+
+Systematic investigation (`scn_formulations.ipynb`) revealed that the only viable physical interpretation of SCN is the **skeleton expansion**: perturbation theory computed using only 1PI self-energy diagrams with bare propagators, without Dyson resummation. This is a well-known concept in standard QFT (Weinberg Ch.12, Zinn-Justin Ch.9).
+
+The connection to SCN is **motivational, not deductive**: the set-theoretic axiom inspired the idea of filtering self-referential diagrams, and the skeleton expansion is the physically consistent implementation of that idea. The axiom does not uniquely determine the expansion — the choice of Physical SCN over other interpretations (Literal, Structural, Diagrammatic) was guided by empirical constraints (Lamb shift, asymptotic freedom).
+
 ---
 
 ## 6. Formal System Summary

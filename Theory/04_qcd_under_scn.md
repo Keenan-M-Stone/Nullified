@@ -1,5 +1,7 @@
 # QCD Under SCN: Detailed Analysis
 
+> **⚠️ Formulation Update (important):** The analysis below was written under the "Diagrammatic SCN" interpretation. The systematic formulation comparison (`scn_formulations.ipynb`) established that only **Physical SCN** (skeleton expansion) is viable. Under Physical SCN, all 1PI self-energy diagrams survive — including the 1-loop gluon SE (gluon loop). This means **asymptotic freedom is preserved** and the crisis described in §3 is resolved. See §8 below for the corrected analysis.
+
 ## 1. QCD Review
 
 Quantum Chromodynamics describes the strong interaction between quarks and gluons:
@@ -276,3 +278,34 @@ The surviving diagrams favor "quark-type" color flow over "gluon-type" color flo
 5. **Is the ghost sector** treatment consistent with BRST symmetry under SCN?
 
 These questions require both analytical work and numerical simulation — the code in `src/` addresses item 3.
+
+---
+
+## 8. Physical SCN Resolution: Asymptotic Freedom Preserved
+
+The asymptotic freedom crisis (§3) arose from Diagrammatic SCN nullifying the gluon-loop self-energy. **Physical SCN resolves this entirely.**
+
+### 8.1 Physical SCN Classification at 1-Loop
+
+Under Physical SCN (skeleton expansion), only non-1PI self-energy insertions are excluded. At 1-loop, ALL self-energy diagrams are 1PI by definition:
+
+| Diagram | 1PI? | Physical SCN |
+|---------|------|-------------|
+| Gluon SE (gluon loop) | Yes | **SURVIVES** |
+| Gluon SE (quark loop) | Yes | **SURVIVES** |
+| Gluon SE (ghost loop) | Yes | **SURVIVES** |
+| Quark self-energy | Yes | **SURVIVES** |
+
+**Result:** $\beta_0 = 11 - \frac{2n_f}{3}$ is **unchanged**. Asymptotic freedom is preserved.
+
+### 8.2 Resolution C Was the Answer
+
+This corresponds exactly to **Resolution C** from §3.4: "SCN applies only to physical propagators." Physical SCN formalizes this as the skeleton expansion — propagators are bare ($G_0$), self-energy insertions are 1PI only, no Dyson resummation.
+
+### 8.3 Where QCD Under Physical SCN Differs
+
+Physical SCN departs from standard QCD at 2-loop and beyond, where some gluon self-energy diagrams contain nested (non-1PI) self-energy insertions. These are nullified. The impact on $\beta_1$ (the 2-loop QCD β-function coefficient) has not been computed and is a priority target for the simulation engine.
+
+### 8.4 Confinement Under Physical SCN
+
+The qualitative confinement argument (§4) remains valid under Physical SCN — it depends on the self-referential structure of isolated color states, not on the diagram classification. However, the argument remains qualitative and does not produce quantitative predictions (string tension, mass gap).

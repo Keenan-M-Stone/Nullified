@@ -128,26 +128,29 @@ This would make QCD **NOT asymptotically free** for any $n_f > 0$, contradicting
 
 ## 5. Overall Viability Assessment
 
+> **Update:** The systematic formulation comparison (`scn_formulations.ipynb`) resolved several items below. Physical SCN (skeleton expansion) is the only viable interpretation.
+
 | Criterion | Status | Notes |
 |-----------|--------|-------|
-| Mathematical consistency | ✓ Likely | Finite predictions, decidable criterion |
+| Mathematical consistency | ✓ Pass | Finite predictions, decidable criterion |
 | QED tree-level | ✓ Pass | Unaffected by SCN |
-| QED one-loop ($g-2$) | ✓ Likely pass | Vertex correction not self-containing |
-| QED running $\alpha$ | ✓ Likely pass | Vacuum polarization survives |
-| Ward identity | ⚠️ Must verify | Could break gauge invariance |
-| QCD asymptotic freedom | ⚠️ Problematic | Gluon self-energy classification critical |
-| Confinement mechanism | ✓ Qualitative | Natural explanation via SCN |
-| Unitarity | ⚠️ Must verify | Removing diagrams could break unitarity |
+| QED one-loop ($g-2$) | ✓ Pass | Identical to standard QFT (by construction) |
+| QED running $\alpha$ | ✓ Pass | Vacuum polarization survives |
+| Ward identity | ✓ Likely pass | 1PI effective action satisfies Slavnov-Taylor identities |
+| QCD asymptotic freedom | ✓ Resolved | Physical SCN preserves all 1PI gluon SE → β₀ unchanged |
+| Confinement mechanism | ~ Qualitative | Natural argument from self-referential gluon states |
+| Unitarity | ⚠️ Must verify | Expected to hold (1PI effective action is unitary), not yet computed |
+| **Two-loop C₂** | **🔬 Critical** | **Make-or-break test — not yet computed** |
 
-**Bottom line:** The approach is **viable as an exploratory framework** with genuine physical connections, but faces non-trivial challenges in QCD and in preserving gauge symmetry. These challenges define the research program.
+**Bottom line:** Physical SCN is **viable as an exploratory framework** with a well-defined connection to standard QFT (skeleton expansion). The theory agrees with experiment at 1-loop by construction. The decisive test is the 2-loop coefficient $C_2^{\text{PHY}}$, which has not yet been computed.
 
 ---
 
 ## 6. Recommended Path Forward
 
-1. **Formalize** the set-theoretic structure and self-containment criterion precisely
-2. **Compute** QED observables under SCN and compare with experiment
-3. **Investigate** gauge invariance preservation (Ward identities)
+1. **Compute C₂^PHY** — the 2-loop anomalous magnetic moment using only skeleton diagrams (4 of 7 survive). This is the decisive test.
+2. **Build simulation engine** — automated diagram generation, classification, and loop integration
+3. **Verify** gauge invariance at 2-loop explicitly (theoretical argument exists from 1PI effective action)
 4. **Tackle** the QCD $\beta$-function problem — either refine SCN or accept a modified QCD
 5. **Simulate** — build computational tools to automate diagram classification and amplitude calculation
 6. **Iterate** — use experimental comparisons to refine the theory
