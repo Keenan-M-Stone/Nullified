@@ -14,6 +14,8 @@ Category theory provides tools for self-referential structures (fixed points, in
 
 **Possible answer:** In the category **Set**, the axiom $S \in S \Rightarrow S = \emptyset$ relates to the initial algebra of the powerset functor. The empty set is the initial object. SCN says that any fixed point of the membership relation is the initial object. In categorical language: the only coalgebra for the "element-of" endofunctor whose carrier is its own element is the trivial coalgebra.
 
+> **Notebook result:** The coalgebraic/algebraic perspective is developed computationally in [scn_foundations.ipynb](scn_foundations.ipynb), §4 (BRST–SCN analogy) and §6 (exterior derivative / de Rham cohomology under SCN). The Dyson equation iteration under SCN is shown to converge to a fixed point in §6.1.
+
 ### Q3: What about indirect self-containment?
 
 We've focused on direct self-containment ($S \in S$). What about $S \in T \in S$ (mutual containment) or longer chains? Should these also be nullified?
@@ -83,11 +85,11 @@ Tools like FORM, FeynCalc, FeynArts, MadGraph generate and evaluate Feynman diag
 
 ---
 
-## 4. Questions for Discussion (User + AI)
+## 4. Questions for Discussion
 
 These are the points where your input is most valuable:
 
-### D1: Which definition of self-containment feels most natural to you?
+### D1: Which definition of self-containment feels most natural?
 
 - **(a) Literal:** $S \in S$ (only direct membership)
 - **(b) Structural:** A set contains a sub-structure isomorphic to itself
@@ -125,3 +127,5 @@ If no: only propagator self-energy corrections are subject to SCN. This is more 
 3. 💻 **Run the simulation code** — Generate plots comparing SCN vs. standard vs. data
 4. 🔧 **Explore Resolution C** for QCD — Gauge-invariant SCN
 5. 📐 **Check unitarity** at one loop — Optical theorem verification
+
+> **Progress:** Items 1–2 are partially addressed; the Koide formula, $\theta_0 = 2/9$ discovery, and Soft SCN QCD model are explored in [scn_investigations.ipynb](scn_investigations.ipynb). Mathematical foundations (operator algebra, geometry, calculus rules) are developed in [scn_foundations.ipynb](scn_foundations.ipynb).

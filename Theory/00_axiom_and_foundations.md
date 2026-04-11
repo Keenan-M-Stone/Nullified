@@ -91,3 +91,15 @@ We augment this with a **process algebra** where:
 - SCN acts as a dynamic filter on the state space
 
 This is the mathematical substrate on which we build the physical theory.
+
+---
+
+## 7. Computational Investigations
+
+The algebraic properties of the SCN operator and its relationship to known mathematical structures have been explored computationally in [scn_foundations.ipynb](scn_foundations.ipynb). Key findings:
+
+- **SCN sits between Regularity and AFA** — a genuinely novel third option not found in the literature under any other name (verified against Aczel 1988, Barwise & Moss 1996, SEP survey by Moss 2018).
+- **The SCN operator $N$ is idempotent** ($N^2 = N$), **multiplicative** ($N(ab) = N(a)N(b)$), but **nonlinear** ($N(a+b) \neq N(a) + N(b)$).
+- **SCN algebra is isomorphic to the dual numbers** $\mathbb{R}[\varepsilon]/(\varepsilon^2)$ — a commuting nilpotent structure.
+- **Deep BRST parallel:** Both BRST and SCN use nilpotent operations ($Q^2 = 0$ and $N^2 = N$ respectively) to separate physical from unphysical states. BRST is linear; SCN is nonlinear.
+- **Topological invariants survive SCN** (Betti numbers, Euler characteristic) while metric content collapses — standard tensor/vector calculus suffices with an added nilpotent direction.

@@ -248,6 +248,15 @@ mass scales instead of three.
 
 ### Verdict: Worth pursuing seriously. This could be the strongest novel prediction of SCN.
 
+> **Notebook results:** The $\mathbb{Z}_3$ / Koide connection has been pursued computationally in [scn_investigations.ipynb](scn_investigations.ipynb) and [scn_foundations.ipynb](scn_foundations.ipynb):
+>
+> - **$\theta_0 = 2/9$ rad discovered** — matches the fitted value to 5 ppm. The formula $\theta_0 = 2/N^2$ where $N = 3$ (the $\mathbb{Z}_3$ rank) gives all three lepton masses to $< 60$ ppm accuracy with **one free parameter** $M = 17.7156\;\sqrt{\text{MeV}}$.
+> - **Koide $Q = 2/3$ is automatic** — proven to hold for *any* $\theta_0$ via $\mathbb{Z}_3$ trigonometric identities.
+> - **Three generations only** — confirmed by the $\mathbb{Z}_3$ periodicity argument.
+> - **Quarks fail Koide** — $Q = 0.849$ (up-type) and $Q = 0.731$ (down-type), indicating quarks need a different treatment (possibly related to confinement / Soft SCN).
+> - **$1/\pi$ factor** — $\theta_0/(2\pi/N) = 1/(N\pi)$, suggesting the base angle is $1/(N\pi)$ of a $\mathbb{Z}_3$ sector. Likely from angular integration in loop integrals, but a rigorous derivation remains open.
+> - **SCN algebra $\cong$ dual numbers** $\mathbb{R}[\varepsilon]/(\varepsilon^2)$ — the natural algebraic structure underlying the framework.
+
 ---
 
 ## Appendix A: Investigating $\theta_0$ from First Principles

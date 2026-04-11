@@ -85,6 +85,8 @@ This predicts $\alpha_s$ **increases** with energy, contradicting deep inelastic
 
 **Status:** This is a **falsifying prediction** unless Resolution C or D from the QCD analysis applies.
 
+> **Notebook result:** The Soft SCN model explored in [scn_investigations.ipynb](scn_investigations.ipynb), §3 shows that a momentum-dependent suppression factor $\eta(\mu) = 1 - e^{-\mu^2/\Lambda^2}$ with $\Lambda_{\text{SCN}} \approx 0.1$ GeV can partially restore asymptotic freedom while preserving the SCN philosophy at low energies.
+
 ### 2.5 Prediction: Natural Confinement Selection Rule
 
 SCN provides a structural reason for confinement: self-interacting color-charged states are self-containing and nullify. Only color-neutral combinations avoid this.

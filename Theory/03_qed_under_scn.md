@@ -95,7 +95,7 @@ Does this contain a QED vertex correction internally? No — the internal struct
 
 **Under SCN:** This diagram **survives**. $\Lambda^{(1)\mu} \neq 0$.
 
-**Physical consequences:**
+**Physical consequences (verified in [scn_investigations.ipynb](scn_investigations.ipynb), §1):**
 - The anomalous magnetic moment receives its one-loop contribution:
 
 $$a_e^{(1)} = \frac{\alpha}{2\pi} \approx 0.0011614$$

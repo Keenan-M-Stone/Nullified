@@ -98,6 +98,8 @@ The quark propagator correction contains an internal quark propagator (same type
 
 **SCN status:** NULLIFIED ✗
 
+> **Note:** The impact of nullifying quark self-energy on QCD observables — including a "Soft SCN" variant with momentum-dependent suppression $\eta(\mu) = 1 - e^{-\mu^2/\Lambda^2}$ — is explored computationally in [scn_investigations.ipynb](scn_investigations.ipynb), §3. The soft model yields a best-fit $\Lambda_{\text{SCN}} \approx 0.1$ GeV and partially recovers asymptotic freedom.
+
 ### 2.4 Vertex Corrections
 
 **Quark-gluon vertex correction (gluon exchange):** Contains internal quark and gluon propagators. No nested vertex correction. **NOT self-containing. SURVIVES.** ✓
