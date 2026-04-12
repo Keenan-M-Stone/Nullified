@@ -62,6 +62,10 @@ If I were picking one thing from this paper to develop further, it would be:
 
 That's where the existing mathematics is deepest and the application surface is widest.
 
+### Spoiler - Result
+
+This is another dead-end for applications of SCN.
+
 ---
 
 ## What this framework can and cannot deliver
@@ -194,4 +198,73 @@ During this analysis, we discovered a normalization bug in `alpha_s_running_1loo
 ### What remains open
 
 - QCD perturbation theory at large order ($n \gg 5$), where factorially growing coefficients ("renormalons") dominate. $\mathcal{N}_\lambda$ might genuinely compete with Borel resummation here, but this regime is not yet experimentally accessible at the precision needed.
+
+---
+
+## Gap exploration: systematic closure
+
+Five potential gaps in the analysis above were identified and explored via dedicated notebooks (`gap1_factorial_series.ipynb` through `gap5_joint_k_lambda.ipynb`). Each tested whether an overlooked avenue could salvage the framework. All five produced definitive negative results.
+
+### Gap 1: Factorial (divergent) series (`gap1_factorial_series.ipynb`)
+
+**Hypothesis**: $\mathcal{N}_\lambda$ was only tested on convergent series. Perhaps it shines on factorially divergent ones (Euler series $\sum (-1)^n n! g^n$, anharmonic oscillator, IR renormalons) where the $n!$ growth is the core problem.
+
+**Result**: $\mathcal{N}_\lambda$ on $\sum (-1)^n n! g^n$ gives $\sum (-1)^n n! (g/\lambda)^n$. When this converges (large enough $\lambda$), it converges to $S(g/\lambda)$ — the **wrong function** evaluated at a rescaled argument. Demonstrated explicitly: at $g = 0.1$, $\lambda = 2$, the attenuated series converges beautifully to $S(0.05) = 0.9544$, NOT to $S(0.1) = 0.9156$.
+
+**Why**: Borel resummation works by transforming the growth structure ($c_n \to c_n/n!$, then integrating). $\mathcal{N}_\lambda$ only rescales the expansion parameter. It cannot remove factorial divergence — only shift where the factorial blow-up occurs.
+
+**Generalized test**: Weighting by $n^{-\alpha n}$ (which DOES tame $n!$ as $e^{-\alpha n \ln n}$) succeeds but breaks multiplicativity — the fundamental algebraic property the framework guarantees.
+
+### Gap 2: CIPT vs FOPT (`gap2_cipt_vs_fopt.ipynb`)
+
+**Hypothesis**: $R_\tau$ can be computed via FOPT (expand in $\alpha_s(m_\tau)$) or CIPT (integrate $\alpha_s$ around the complex contour $|s| = m_\tau^2$). In standard QCD these give different results — a longstanding discrepancy. Perhaps $\beta_0$ attenuation resolves it.
+
+**Result**: At no $\lambda$ can both FOPT and CIPT simultaneously match experiment. At $\lambda = 1.0$: FOPT gives $R_\tau = 3.582$ ($+9.5\sigma$), CIPT gives $3.918$ ($+40\sigma$). At $\lambda = 1.2$: FOPT drops to $3.299$ ($-16.2\sigma$), CIPT drops to $3.437$ ($-3.7\sigma$). The $\beta_0$ attenuation shifts both curves but doesn't bring them together.
+
+**Why**: The FOPT/CIPT discrepancy arises from the non-trivial analytic structure of $\alpha_s$ in the complex plane (especially near the Landau pole). $\beta_0$ attenuation modifies the running rate but doesn't change the analytic structure that causes the discrepancy.
+
+### Gap 3: Per-diagram nesting decomposition (`gap3_per_diagram.ipynb`)
+
+**Hypothesis**: Previous tests attenuated uniformly by loop order ($\lambda^{-n}$ for all $n$-loop diagrams). Weighting by *nesting depth* $\sigma_\text{nest}$ instead — skeleton diagrams ($\sigma_\text{nest} = 0$) at full weight, SE insertions ($\sigma_\text{nest} = 1$) attenuated — is structurally different and might help.
+
+**Result**: Per-diagram nesting IS structurally different from coupling rescaling. At QED 2-loop: $C_2(\lambda) = \text{SE}/\lambda + \text{skeleton}$ has a different $\lambda$-dependence than $C_2/\lambda^2$. However:
+- **QED**: The 2-loop coefficient is constrained at $\sim 3 \times 10^7 \sigma$ precision. ANY modification is catastrophic.
+- **QCD**: Using a parametric "bubble fraction" model ($f$ of $K_n$ from bubble chains, attenuated by $\lambda^{-(n-1)}$), we trivially fit $R_\tau$ for any $f \geq 0.3$. But this is 2 free parameters fitting 1 number — pure curve-fitting with no predictive power. Cross-observable predictions (e.g., $R(\sqrt{s} = 10.5\text{ GeV})$) are negligible because $\alpha_s$ is small at high energies.
+
+### Gap 4: Hard nesting-depth threshold (`gap4_threshold_nesting.ipynb`)
+
+**Hypothesis**: Soft attenuation ($\lambda$-weighting) was tested; a *hard* threshold $N_k$ (kill all diagrams with nesting depth $\geq k$) might give different results.
+
+**Result**:
+- $k = 1$ (binary SCN): Kills gluon self-energy loop in $\beta_0$, leaving $\beta_0 = -1$ for $n_f = 3$. Asymptotic freedom is destroyed. For QED, this is the skeleton expansion, falsified at $\geq 3 \times 10^7 \sigma$.
+- $k \geq 2$: At 1-loop level, the deepest nesting is 1, so $k \geq 2$ does nothing to $\beta_0$. For $K_n$ coefficients, threshold at $k$ selectively removes the "bubble chain fraction" — but this fraction is unknown, introducing a free parameter that makes the test circular.
+
+### Gap 5: Joint $(k, \lambda)$ 2D parameter space (`gap5_joint_k_lambda.ipynb`)
+
+**Hypothesis**: The combined operator $N_k \circ N_\lambda$ — keep diagrams with depth $< k$, attenuate survivors by $\lambda^{-\sigma}$ — might find a sweet spot in the 2D parameter space.
+
+**Result**:
+- **Factorial series**: $S(g; k, \lambda) = \sum_{n < k} (-1)^n n! (g/\lambda)^n$ = a truncated version of $S(g/\lambda)$. Still evaluates the wrong function, now truncated.
+- **$R_\tau$**: With 3 free parameters $(f, k, \lambda)$ and 1 observable, green regions in the $(k, \lambda)$ heatmap exist for every $f$ value. This is a trivially achievable curve fit with zero predictive content.
+- **Structural**: The combined operator is still a linear reweighting of perturbative terms. It cannot perform the nonlinear transformations (Borel, conformal mapping) that actually tame divergent series.
+
+### Summary of all gaps
+
+| Gap | Test | Result | Root cause |
+|-----|------|--------|------------|
+| 1 | Factorial series | Converges to $S(g/\lambda)$ ≠ $S(g)$ | $\lambda$-weighting = coupling rescaling |
+| 2 | CIPT vs FOPT | No $\lambda$ fits both | Discrepancy is analytic, not radiative |
+| 3 | Per-diagram nesting | Fits trivially (2 params / 1 obs) | Lack of per-diagram data → free parameter |
+| 4 | Hard threshold | $k=1$ falsified; $k \geq 2$ vacuous | Self-energies are indispensable |
+| 5 | Joint $(k, \lambda)$ | Trivial curve fit (3 params / 1 obs) | Linear reweighting cannot replace Borel |
+
+### Final assessment
+
+The graded SCN framework ($\sigma: A \to \mathbb{N}$, with threshold $\mathcal{N}_k$ and attenuation $\mathcal{N}_\lambda$) is mathematically clean and provides a coherent algebraic structure for filtered algebras. However, it has no computational traction in perturbative QFT:
+
+1. **QED**: Too precise for any modification to survive ($\Delta C_2 \cdot (\alpha/\pi)^2 \gg \sigma_\text{exp}$).
+2. **QCD**: Either destroys essential physics (asymptotic freedom at $k = 1$) or reduces to under-constrained curve fitting ($k \geq 2$ with unknown bubble fractions).
+3. **Divergent series**: Multiplicative reweighting ($\lambda^{-\sigma}$, the foundation's central tool) cannot transform factorial growth — it's the wrong category of operation.
+
+The framework remains valuable as an **organizational lens** for filtered algebras, but its physics applications in perturbation theory are definitively closed.
 - Non-perturbative applications: the framework's value may ultimately lie in the algebraic structure (filtrations, associated graded rings) rather than in numerical prediction of observables.
