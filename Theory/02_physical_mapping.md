@@ -162,4 +162,6 @@ If the number of contributing diagrams at order $n$ is finite in standard pertur
 
 *Proof:* SCN only removes diagrams; it doesn't add any. $\square$
 
-**Open question:** Does the SCN-filtered perturbation series converge better than the standard (asymptotic) series? By removing self-referential diagrams — which contribute the fastest-growing factorial terms — the growth rate may be reduced.
+**Open question (MOOT):** Does the SCN-filtered perturbation series converge better than the standard (asymptotic) series? By removing self-referential diagrams — which contribute the fastest-growing factorial terms — the growth rate may be reduced.
+
+> **Post-falsification note:** Physical SCN has been falsified at ≥415σ by the 2-loop electron $g-2$ (`scn_c2_investigation.ipynb`). This convergence question is therefore moot — the SCN-filtered series is the wrong series.

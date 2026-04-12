@@ -156,7 +156,7 @@ This suggests the muon isn't a "heavy electron" — it's a higher-order topologi
 **On novelty:** The core pieces exist separately but have not been combined this way:
 - Peter Aczel's Anti-Foundation Axiom (1980s) allows self-containing sets but treats them as "hypersets" rather than nullifying them
 - The Koide Formula (1981) perfectly predicts lepton mass ratios but has no accepted theoretical origin
-- **This model** provides a set-theoretic derivation of Koide's formula without requiring undiscovered sub-particles — only that the universe's basic logic forbids unbounded self-reference
+- **This model** attempted a set-theoretic connection to Koide's formula, but the numerical result $\theta_0 = 2/9$ was previously discovered by Brannen (2005). The SCN connection is motivational, not deductive
 
 ---
 

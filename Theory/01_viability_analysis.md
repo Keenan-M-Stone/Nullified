@@ -128,7 +128,7 @@ This would make QCD **NOT asymptotically free** for any $n_f > 0$, contradicting
 
 ## 5. Overall Viability Assessment
 
-> **Update:** The systematic formulation comparison (`scn_formulations.ipynb`) resolved several items below. Physical SCN (skeleton expansion) is the only viable interpretation.
+> **Update:** The systematic formulation comparison (`scn_formulations.ipynb`) resolved several items below. Physical SCN (skeleton expansion) was the only viable interpretation — and it has since been **definitively falsified** at ≥415σ by the 2-loop electron $g-2$ (see `scn_c2_investigation.ipynb`). All items below are now final.
 
 | Criterion | Status | Notes |
 |-----------|--------|-------|
@@ -139,18 +139,22 @@ This would make QCD **NOT asymptotically free** for any $n_f > 0$, contradicting
 | Ward identity | ✓ Likely pass | 1PI effective action satisfies Slavnov-Taylor identities |
 | QCD asymptotic freedom | ✓ Resolved | Physical SCN preserves all 1PI gluon SE → β₀ unchanged |
 | Confinement mechanism | ~ Qualitative | Natural argument from self-referential gluon states |
-| Unitarity | ⚠️ Must verify | Expected to hold (1PI effective action is unitary), not yet computed |
-| **Two-loop C₂** | **🔬 Critical** | **Make-or-break test — not yet computed** |
+| Unitarity | ✗ Moot | Physical SCN is falsified; unitarity verification no longer needed |
+| **Two-loop C₂** | **❌ FALSIFIED** | **Physical SCN falsified at ≥415σ** — see `scn_c2_investigation.ipynb` |
 
-**Bottom line:** Physical SCN is **viable as an exploratory framework** with a well-defined connection to standard QFT (skeleton expansion). The theory agrees with experiment at 1-loop by construction. The decisive test is the 2-loop coefficient $C_2^{\text{PHY}}$, which has not yet been computed.
+**Bottom line:** Physical SCN is **falsified**. The skeleton expansion (which Physical SCN is equivalent to) omits SE-insertion diagrams that contribute $C_2^{SE} \approx 0.77$ to the 2-loop $g-2$ coefficient. Even $C_2^{SE} = 10^{-5}$ is excluded at 415σ. Furthermore, a **no-go theorem** establishes that *any* SCN variant removing a non-empty set of Feynman diagrams is falsified, because every diagram is needed to reproduce the experimentally verified $C_2 = -0.328\,478\,965\,579\ldots$ (confirmed to 10 significant figures).
 
 ---
 
-## 6. Recommended Path Forward
+## 6. Final Status
 
-1. **Compute C₂^PHY** — the 2-loop anomalous magnetic moment using only skeleton diagrams (4 of 7 survive). This is the decisive test.
-2. **Build simulation engine** — automated diagram generation, classification, and loop integration
-3. **Verify** gauge invariance at 2-loop explicitly (theoretical argument exists from 1PI effective action)
-4. **Tackle** the QCD $\beta$-function problem — either refine SCN or accept a modified QCD
-5. **Simulate** — build computational tools to automate diagram classification and amplitude calculation
-6. **Iterate** — use experimental comparisons to refine the theory
+> **All items below are superseded by the falsification result.**
+
+1. ~~**Compute C₂^PHY**~~ — ✅ Done. Physical SCN falsified at ≥415σ. See `scn_c2_investigation.ipynb`.
+2. ~~**Build simulation engine**~~ — Partially built (`src/engine/`). No longer needed for SCN testing.
+3. ~~**Verify gauge invariance at 2-loop**~~ — Moot (Physical SCN falsified).
+4. ~~**Tackle the QCD β-function problem**~~ — Moot (Physical SCN falsified).
+5. ~~**Simulate**~~ — Moot (Physical SCN falsified).
+6. ~~**Iterate**~~ — No iteration possible; SCN is falsified in all physics domains.
+
+See `scn_beyond_falsification.ipynb` for the post-falsification exploration of modified variants (all also fail).

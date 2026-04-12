@@ -1,6 +1,8 @@
 # QCD Under SCN: Detailed Analysis
 
 > **⚠️ Formulation Update (important):** The analysis below was written under the "Diagrammatic SCN" interpretation. The systematic formulation comparison (`scn_formulations.ipynb`) established that only **Physical SCN** (skeleton expansion) is viable. Under Physical SCN, all 1PI self-energy diagrams survive — including the 1-loop gluon SE (gluon loop). This means **asymptotic freedom is preserved** and the crisis described in §3 is resolved. See §8 below for the corrected analysis.
+>
+> **❌ Falsification (definitive):** Physical SCN has been **falsified at ≥415σ** by the 2-loop electron $g-2$. The skeleton expansion omits SE-insertion diagrams essential for reproducing the experimentally verified $C_2 = -0.328\,478\,965\,579\ldots$. A no-go theorem establishes that *any* removal-type SCN variant is falsified. See `scn_c2_investigation.ipynb`. The QCD analysis below is retained for intellectual completeness but is moot — there is no viable SCN to extend to QCD.
 
 ## 1. QCD Review
 

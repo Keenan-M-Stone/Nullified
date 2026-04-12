@@ -96,7 +96,8 @@ def compute_g2_2loop() -> G2Result:
     are removed because they use corrected (non-bare) propagators.
 
     The precise value of C₂^PHY requires careful treatment of the
-    counterterm structure — this is THE open computation.
+    counterterm structure. This computation has been completed —
+    Physical SCN is FALSIFIED at ≥415σ. See scn_c2_investigation.ipynb.
     """
     C2_STANDARD = -0.328478965579
 

@@ -205,9 +205,9 @@ For intellectual honesty, we list things often conflated with SCN in this projec
 
 ### 7.1 The Koide Formula and θ₀ = 2/9
 
-The Koide formula ($Q = 2/3$) and the discovery that $\theta_0 = 2/9$ reproduces all three lepton masses to < 60 ppm are **phenomenological observations** about lepton masses. They work identically with or without SCN. The Z₃ nesting-depth narrative provides a suggestive connection but not a derivation.
+The Koide formula ($Q = 2/3$) is well-known since Koide (1981). The value $\theta_0 = 2/9$ was discovered by Carl Brannen (2005, "The Lepton Masses") and reproduces all three lepton masses to < 60 ppm. These are **prior results by other authors**, not discoveries of this project. We independently verified them and explored a closure condition derivation ($N\theta_0 = 2/N$), but that derivation is incomplete. The Z₃ nesting-depth narrative provides a suggestive connection but not a derivation.
 
-**Status:** Interesting independent discovery. Potentially publishable on its own. Not an SCN result.
+**Status:** Brannen's result (2005). Properly attributed. Not an SCN result.
 
 ### 7.2 Z₃ Generation Structure
 
@@ -227,8 +227,8 @@ Priority list, updated to focus on Physical SCN's testable predictions:
 
 | Priority | Observable | What it tests | Status |
 |----------|-----------|---------------|--------|
-| 1 | **$C_2^{\text{PHY}}$ (2-loop $g-2$)** | The decisive test | 🔬 Requires simulation engine |
+| 1 | **$C_2^{\text{PHY}}$ (2-loop $g-2$)** | The decisive test | **❌ FALSIFIED** — Physical SCN excluded at ≥415σ. See `scn_c2_investigation.ipynb` |
 | 2 | $e^+e^- \to \mu^+\mu^-$ at 1-loop | Baseline validation | ✅ Done ([scn_formulations.ipynb](scn_formulations.ipynb), §7) |
-| 3 | 2-loop Lamb shift | Secondary test | 🔬 Requires 2-loop diagram generation |
-| 4 | $R$-ratio at NLO | QCD validation | 🔬 Requires extending to QCD |
+| 3 | 2-loop Lamb shift | Secondary test | Moot — Physical SCN already falsified at 2-loop $g-2$ |
+| 4 | $R$-ratio at NLO | QCD validation | Moot — no viable SCN to extend to QCD |
 | 5 | $\alpha_s(M_Z)$ running | QCD consistency | ✅ Done at 1-loop (standard result) |

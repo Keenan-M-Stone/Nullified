@@ -246,15 +246,15 @@ mass scales instead of three.
 - **Explain the mass hierarchy** — why $\sqrt{m}$ (not $m$ or $\ln m$)
   is the natural variable
 
-### Verdict: Worth pursuing seriously. This could be the strongest novel prediction of SCN.
+### Verdict: Worth exploring, but the key numerical result (θ₀ = 2/9) is due to Brannen (2005), not this project.
 
 > **Notebook results:** The $\mathbb{Z}_3$ / Koide connection has been pursued computationally in [scn_investigations.ipynb](scn_investigations.ipynb) and [scn_foundations.ipynb](scn_foundations.ipynb):
 >
-> - **$\theta_0 = 2/9$ rad discovered** — matches the fitted value to 5 ppm. The formula $\theta_0 = 2/N^2$ where $N = 3$ (the $\mathbb{Z}_3$ rank) gives all three lepton masses to $< 60$ ppm accuracy with **one free parameter** $M = 17.7156\;\sqrt{\text{MeV}}$.
-> - **Koide $Q = 2/3$ is automatic** — proven to hold for *any* $\theta_0$ via $\mathbb{Z}_3$ trigonometric identities.
-> - **Three generations only** — confirmed by the $\mathbb{Z}_3$ periodicity argument.
+> - **$\theta_0 = 2/9$ rad verified** — independently reproduced Brannen's (2005) result. Matches the fitted value to 5 ppm. The formula $\theta_0 = 2/N^2$ where $N = 3$ gives all three lepton masses to $< 60$ ppm accuracy with **one free parameter** $M = 17.7156\;\sqrt{\text{MeV}}$. The notation $2/N^2$ and the value $2/9$ are due to Brannen (2005, "The Lepton Masses"); see also Żenczykowski (2013, PhysRevD) who calls it the "Brannen-Rosen" value.
+> - **Koide $Q = 2/3$ is automatic** — holds for *any* $\theta_0$ via $\mathbb{Z}_3$ trigonometric identities. This is well-known and implicit in Koide's original work (1981).
+> - **Three generations** — inherent in the $\mathbb{Z}_3$ parametrization (not a prediction).
 > - **Quarks fail Koide** — $Q = 0.849$ (up-type) and $Q = 0.731$ (down-type), indicating quarks need a different treatment (possibly related to confinement / Soft SCN).
-> - **$1/\pi$ factor** — $\theta_0/(2\pi/N) = 1/(N\pi)$, suggesting the base angle is $1/(N\pi)$ of a $\mathbb{Z}_3$ sector. Likely from angular integration in loop integrals, but a rigorous derivation remains open.
+> - **$1/\pi$ factor** — $\theta_0/(2\pi/N) = 1/(N\pi)$, suggesting the base angle is $1/(N\pi)$ of a $\mathbb{Z}_3$ sector. We proposed a closure condition $N\theta_0 = (2\pi/N)/\pi = 2/N$ to derive this, but the argument is incomplete — the $1/\pi$ factor is asserted, not proven.
 > - **SCN algebra $\cong$ dual numbers** $\mathbb{R}[\varepsilon]/(\varepsilon^2)$ — the natural algebraic structure underlying the framework.
 
 ---
@@ -262,6 +262,8 @@ mass scales instead of three.
 ## Appendix A: Investigating $\theta_0$ from First Principles
 
 ### A.1 The numerical value
+
+> **Attribution:** The value $\theta_0 = 2/9$ was first identified by Carl Brannen in 2005 and published in his 2006 paper "The Lepton Masses." As Brannen wrote: "That $\delta_1$ is close to 2/9 went unnoticed until this author discovered it in 2005." The notation $2/N^2$ and the Z₃ connection have been explored by Żenczykowski (2013, PhysRevD, who calls it the "Brannen-Rosen" value), Sheppeard (2017), and others. We independently rediscovered this value and verified it below, but cannot claim priority.
 
 Fitting the Koide parametrization (with the $n$-convention) to PDG lepton
 masses gives:
@@ -304,7 +306,9 @@ The relationship $N \pi \theta_0 = 2\pi/N$ ties the offset directly to the
 $\mathbb{Z}_N$ group structure. It generalizes to any cyclic group: for
 $\mathbb{Z}_N$, the offset would be $\theta_0 = 2/N^2$.
 
-### A.3 Candidate derivation: Phase-amplitude duality
+### A.3 Candidate derivation: Phase-amplitude duality (our contribution)
+
+> **Note:** The *value* $\theta_0 = 2/9$ is Brannen's (2005). What follows is our attempt to *derive* that value from a closure condition. We have not found this specific argument in prior literature, but the derivation is incomplete — the $1/\pi$ factor is asserted, not proven.
 
 In the SCN process algebra, self-containment at nesting depth $n$ involves
 two independent contributions to the state's phase:
@@ -339,14 +343,16 @@ $$\boxed{\theta_0 = \frac{2}{N^2}}$$
 
 ### A.4 Honest assessment
 
-**What this gets right:**
+**What this gets right** (all due to Brannen 2005, not this project):
 
 - Reproduces all three charged lepton masses to < 60 ppm
 - Reduces the Koide formula from 2 free parameters ($M$, $\theta_0$) to 1 ($M$)
 - The formula $\theta_0 = 2/N^2$ is completely determined by the group
   structure — no fitting, no free constants
-- Combined with $Q = 2/3$ (automatic from $\mathbb{Z}_3$), this gives
-  a 1-parameter formula for 3 masses: **2 genuine predictions**
+
+**What our closure derivation (§A.3) adds:**
+
+- A specific mechanism ($N\theta_0 = (2\pi/N)/\pi$) that *would* explain the value if the $1/\pi$ factor were proven
 
 **What is still weak:**
 
@@ -408,15 +414,15 @@ story" to "prediction of SCN," the following are needed:
 |------|-----------|----------|--------|
 | Flux tube boundary | No (keep narrative) | Low | No new predictions; identical to standard string model |
 | Null core radius | Defer | Medium | Superseded by full SCN; may be useful as "Soft SCN" fallback |
-| Nesting depth → generations | **Yes** | **High** | Natural $\mathbb{Z}_3$; predicts 3 generations and Koide formula |
-| $\theta_0 = 2/9$ | **Tentative yes** | **High** | 5 ppm match; clean algebraic form; derivation incomplete |
+| Nesting depth → generations | **Yes** | **High** | Natural $\mathbb{Z}_3$; connects to Koide formula |
+| $\theta_0 = 2/9$ | **Prior work (Brannen 2005)** | **N/A** | Not our result; clean algebraic form; derivation remains open |
 
-### Recommended Next Steps
+### Recommended Next Steps (Post-Falsification Assessment)
 
-1. Formalize the $\mathbb{Z}_3$ nesting depth structure in a new theory
-   document (08) with the Koide connection and $\theta_0 = 2/9$ result
-2. Investigate why $N = 3$ — show SCN nesting stability breaks down at $n = 4$
-3. Search the literature for quark mass schemes where Koide holds — test
-   if $\theta_0 = 2/9$ works there too
-4. Connect the mass scale $M$ to the electroweak sector
-5. Rigorously derive the $1/\pi$ factor from the SCN process algebra
+> **Note:** Physical SCN has been **falsified at ≥415σ** by the 2-loop electron $g-2$ (`scn_c2_investigation.ipynb`). A no-go theorem rules out all removal-type variants (`scn_beyond_falsification.ipynb`). The items below are therefore **independent of SCN** — they concern the Koide/Brannen numerology and $\mathbb{Z}_3$ structure, which stand on their own regardless of SCN's fate.
+
+1. ~~Formalize the $\mathbb{Z}_3$ nesting depth structure in a new theory document~~ — Deferred. The $\mathbb{Z}_3$ structure is interesting but unconnected to a viable SCN theory.
+2. Investigate why $N = 3$ — show SCN nesting stability breaks down at $n = 4$ — **Still open**, but now a pure math/numerology question.
+3. Search the literature for quark mass schemes where Koide holds — test if $\theta_0 = 2/9$ works there too — **Still open**. Preliminary check: quarks fail Koide ($Q = 0.849$ up-type, $Q = 0.731$ down-type).
+4. Connect the mass scale $M$ to the electroweak sector — **Still open**.
+5. Rigorously derive the $1/\pi$ factor from the SCN process algebra — **Still open**, and likely requires a framework beyond SCN.

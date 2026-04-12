@@ -1,6 +1,8 @@
 # QED Under SCN: Detailed Analysis
 
 > **⚠️ Formulation Update (important):** The analysis below was originally written under the "Diagrammatic SCN" interpretation, which nullifies ALL self-energy diagrams. Systematic testing (`scn_formulations.ipynb`) showed that Diagrammatic SCN is **ruled out** — it predicts a Lamb shift of ~40 MHz vs the measured 1057 MHz. The only viable interpretation is **Physical SCN** (skeleton expansion), which preserves all 1PI self-energy diagrams at 1-loop. See §7 below for the corrected classification. Sections 2–6 are retained for historical context but the conclusions in §3.1 are superseded.
+>
+> **❌ Falsification (definitive):** Physical SCN has itself been **falsified at ≥415σ** by the 2-loop electron $g-2$ coefficient $C_2$. The skeleton expansion omits SE-insertion diagrams that contribute $C_2^{SE} \approx 0.77$ — even $C_2^{SE} = 10^{-5}$ is excluded at 415σ. A no-go theorem establishes that *any* SCN variant removing a non-empty set of Feynman diagrams is falsified. See `scn_c2_investigation.ipynb` for the full computation and `scn_beyond_falsification.ipynb` for post-falsification analysis. The analysis below is retained for intellectual completeness.
 
 ## 1. QED Review
 

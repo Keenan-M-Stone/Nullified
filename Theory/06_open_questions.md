@@ -1,8 +1,8 @@
 # Open Questions and Discussion Points
 
-> **Status key:** ✅ RESOLVED | ⚠️ PARTIALLY RESOLVED | ❌ OPEN | 🔬 NEEDS COMPUTATION
+> **Status key:** ✅ RESOLVED | ⚠️ PARTIALLY RESOLVED | ❌ OPEN | 🔬 NEEDS COMPUTATION | ✖ MOOT (theory falsified)
 >
-> **Last updated after:** Formulation comparison framework ([scn_formulations.ipynb](scn_formulations.ipynb)) and risk audit (April 2026).
+> **Last updated after:** Post-falsification audit (Physical SCN falsified at ≥415σ; see `scn_c2_investigation.ipynb`).
 
 ## 1. Foundational Questions
 
@@ -36,15 +36,17 @@ We've focused on direct self-containment ($S \in S$). What about $S \in T \in S$
 
 ## 2. Physical Questions
 
-### Q4: How does SCN interact with gauge invariance at higher orders? — ⚠️ PARTIALLY RESOLVED
+### Q4: How does SCN interact with gauge invariance at higher orders? — ✖ MOOT
 
 At one loop, we showed the Ward identity is preserved. But at two loops and beyond, the interplay between nullified and surviving diagrams becomes more complex. Gauge cancellations in standard QFT often involve self-energy, vertex, and box diagrams together.
 
 **Test case:** Compute the two-loop QED contribution to $e^+e^- \to \mu^+\mu^-$ under SCN and verify gauge independence.
 
 > **Progress (Physical SCN):** At 1-loop, Physical SCN is identical to standard QFT, so gauge invariance is trivially preserved. At 2-loop, the **skeleton expansion interpretation** provides a strong theoretical argument: the 1PI effective action $\Gamma[\phi]$ satisfies Slavnov–Taylor identities by construction (Zinn-Justin, Ch.9). Physical SCN ≡ "use $\Gamma$, don't iterate the Dyson equation" preserves gauge invariance because $\Gamma$ does. In the background field formalism, this argument is clean. In the standard formalism, gauge-fixing introduces additional subtleties at 2-loop. A complete proof requires explicit computation. **Status: theoretically likely resolved, awaits numerical confirmation.**
+>
+> **Post-falsification (MOOT):** Physical SCN was falsified at ≥415σ before this computation could be performed. The question of whether the skeleton expansion preserves gauge invariance at 2-loop is now academic. See `scn_c2_investigation.ipynb`.
 
-### Q5: Does SCN respect unitarity? — ⚠️ PARTIALLY RESOLVED
+### Q5: Does SCN respect unitarity? — ✖ MOOT
 
 The optical theorem relates the imaginary part of forward scattering amplitudes to total cross-sections:
 
@@ -53,6 +55,8 @@ $$2 \,\text{Im}\, \mathcal{M}(a \to a) = \sum_f \int d\Pi_f \,|\mathcal{M}(a \to
 Removing self-energy diagrams from the left side (forward scattering amplitude) without removing corresponding terms from the right side (cross-sections) could violate this. Must verify.
 
 > **Progress (Physical SCN):** At 1-loop, unitarity is trivially satisfied (identical to standard QFT). At 2-loop, Physical SCN removes only a **subset** of diagrams (nested SE insertions), so any unitarity violation would be a perturbative correction, not a catastrophic failure. Additionally, in the skeleton expansion, SE insertions and their cuts appear in matched pairs on both sides of the optical theorem — removing both sides simultaneously should preserve the identity. **Status: theoretically plausible, needs explicit 2-loop verification.**
+>
+> **Post-falsification (MOOT):** Physical SCN was falsified at ≥415σ before unitarity could be verified at 2-loop. The question is moot — there is no viable Physical SCN theory to check unitarity for. See `scn_c2_investigation.ipynb`.
 
 ### Q6: What is the SCN prediction for the Lamb shift? — ✅ RESOLVED
 
@@ -67,13 +71,15 @@ Standard theory: Lamb shift $\approx 1057$ MHz
 >
 > **Formulations ruled out:** Structural SCN and Diagrammatic SCN are **empirically falsified** by the Lamb shift (predicted 40 MHz vs. measured 1057 MHz). Soft variants cannot rescue them without making $\Lambda_{\text{SCN}} \ll m_e$, at which point SCN has no observable effect.
 
-### Q7: Is there a connection to the hierarchy problem? — ❌ OPEN (unchanged by Physical SCN)
+### Q7: Is there a connection to the hierarchy problem? — ❌ OPEN (academic post-falsification)
 
 The hierarchy problem in the Standard Model involves the Higgs mass receiving quadratically divergent self-energy corrections. Under Physical SCN, the 1-loop Higgs self-energy **survives** (it uses bare propagators), so the leading quadratic divergence is **not removed**. Higher-order nested corrections are suppressed, but the dominant contribution remains.
 
 **If SCN could be made to work for QED/QCD**, its extension to the electroweak sector might address the hierarchy problem — one of the biggest open problems in particle physics.
 
 > **Assessment (Physical SCN):** Physical SCN does NOT solve the hierarchy problem at 1-loop. The Higgs self-energy uses bare propagators → survives. Only nested 2+ loop corrections are removed, which are subleading. This was noted in [scn_formulations.ipynb](scn_formulations.ipynb), §10.
+>
+> **Post-falsification note:** Since Physical SCN is falsified at ≥415σ, and no viable SCN variant exists (`scn_beyond_falsification.ipynb`), this question is now purely academic.
 
 ### Q8: What about anomalies? — ✅ RESOLVED
 
@@ -137,19 +143,19 @@ Tools like FORM, FeynCalc, FeynArts, MadGraph generate and evaluate Feynman diag
 
 ---
 
-## 5. Prioritized Next Steps (Updated)
+## 5. Prioritized Next Steps (Final — Post-Falsification)
 
 | Priority | Task | Status |
 |----------|------|--------|
 | 1 | ~~Calculate the Lamb shift under SCN~~ | ✅ Done — 1057 MHz under Physical SCN |
-| 2 | **Compute $C_2^{\text{PHY}}$ for $g-2$** | 🔬 NEXT — classify 7 two-loop vertex diagrams, sum skeleton contributions |
+| 2 | ~~**Compute $C_2^{\text{PHY}}$ for $g-2$**~~ | ❌ **FALSIFIED** at ≥415σ — see `scn_c2_investigation.ipynb` |
 | 3 | ~~Run the simulation code~~ | ✅ Done — [scn_formulations.ipynb](scn_formulations.ipynb) |
 | 4 | ~~Explore Resolution C for QCD~~ | ✅ Done — Physical SCN IS Resolution C |
-| 5 | Verify unitarity at 2-loop | ⚠️ Theoretically likely OK (skeleton argument), needs computation |
-| 6 | **Build simulation engine** | 🔬 NEXT — generate → filter → integrate → renormalize pipeline |
-| 7 | Verify gauge invariance at 2-loop | ⚠️ Strong theoretical support, needs explicit calculation |
+| 5 | ~~Verify unitarity at 2-loop~~ | ✖ Moot (Physical SCN falsified before verification) |
+| 6 | ~~**Build simulation engine**~~ | ✖ Moot (partially built in `src/engine/`, no longer needed) |
+| 7 | ~~Verify gauge invariance at 2-loop~~ | ✖ Moot (Physical SCN falsified before verification) |
 
-> **Progress:** Items 1, 3, 4 are complete. The Koide formula, $\theta_0 = 2/9$ discovery, and Soft SCN QCD model are explored in [scn_investigations.ipynb](scn_investigations.ipynb). Mathematical foundations in [scn_foundations.ipynb](scn_foundations.ipynb). Formulation comparison in [scn_formulations.ipynb](scn_formulations.ipynb). The simulation engine is the primary vehicle for items 2, 5, 6, 7.
+> **Summary:** Items 1, 3, 4 completed. Item 2 was the decisive test and falsified Physical SCN. Items 5, 6, 7 became moot upon falsification. All leads have been chased down.
 
 ---
 
@@ -165,26 +171,30 @@ This section documents intellectual risks identified during our self-audit. Tran
 
 **Caveat:** The connection to the set-theoretic axiom $\forall S: S \in S \Rightarrow S = \emptyset$ is **motivational**, not deductive. The axiom suggests the prescription; it does not logically force it.
 
-### Risk 2: Koide/θ₀ independence — CONFIRMED (must separate in documentation)
+### Risk 2: Koide/θ₀ independence — CONFIRMED (prior work, not our discovery)
 
-**Concern:** The Koide formula ($Q = 2/3$) and $\theta_0 = 2/9$ are phenomenological observations about lepton masses that work identically with or without SCN.
+**Concern:** The Koide formula ($Q = 2/3$) and $\theta_0 = 2/9$ are prior results by other authors (Koide 1981, Brannen 2005) that work identically with or without SCN.
 
-**Status:** Confirmed. These are NOT SCN predictions. The Z₃ nesting-depth narrative is suggestive but not a derivation. All documentation must clearly separate "interesting phenomenology" from "SCN-specific results." The README and theory docs have been updated accordingly.
+**Status:** Confirmed. These are NOT SCN predictions, and they are NOT our discoveries. The value $\theta_0 = 2/9$ is due to Brannen (2005). The Z₃ nesting-depth narrative is suggestive but not a derivation. All documentation has been updated with proper attribution.
 
-### Risk 3: Circular reasoning in formulation selection — PARTIALLY RESOLVED
+### Risk 3: Circular reasoning in formulation selection — RESOLVED (moot post-falsification)
 
 **Concern:** We defined Physical SCN so that 1-loop results survive, then cited 1-loop agreement as evidence.
 
-**Resolution:** The definition is physically motivated (bare vs. dressed propagators) and maps to a standard concept (skeleton expansion), so it is not purely ad-hoc. However, **1-loop agreement must NOT be cited as evidence** for Physical SCN. The real test is at 2-loop ($C_2^{\text{PHY}}$), which we have not yet computed.
+**Resolution:** The definition is physically motivated (bare vs. dressed propagators) and maps to a standard concept (skeleton expansion), so it is not purely ad-hoc. However, **1-loop agreement must NOT be cited as evidence** for Physical SCN. The real test was at 2-loop ($C_2^{\text{PHY}}$).
 
-### Risk 4: Code inconsistency — CONFIRMED (to be fixed in simulation engine)
+**Outcome:** The 2-loop test was performed in `scn_c2_investigation.ipynb` and **Physical SCN was falsified at ≥415σ**. The circular reasoning concern is now moot — the theory failed its independent test.
+
+### Risk 4: Code inconsistency — CONFIRMED (moot post-falsification)
 
 **Concern:** `g2_components(loop_order=2)` is hand-coded rather than derived from `classify()`. At 2-loop, vertex diagrams **containing** SE insertions should be partially nullified, but `classify()` only checks the top-level diagram type.
 
-**Resolution:** The simulation engine will unify these by generating actual 2-loop diagram topologies and classifying subdiagrams. The hand-coded tables are acknowledged as placeholders.
+**Resolution:** The simulation engine was partially built but never completed. The hand-coded tables were sufficient to establish falsification — the analytical computation in `scn_c2_investigation.ipynb` showed $C_2^{SE} \approx 0.77$, excluding Physical SCN at ≥415σ regardless of code-level refinements.
 
-### Risk 5: Gauge invariance at 2-loop — LIKELY RESOLVED (theoretical argument)
+### Risk 5: Gauge invariance at 2-loop — MOOT (Physical SCN falsified)
 
 **Concern:** Removing nested SE insertions could break Ward-Takahashi identities at 2-loop.
 
-**Resolution:** The skeleton expansion interpretation provides strong theoretical support. The 1PI effective action $\Gamma[\phi]$ satisfies Slavnov-Taylor identities by construction. Physical SCN = "use $\Gamma$ without Dyson resummation" inherits this gauge symmetry. In the background field formalism, this is clean. Explicit 2-loop computation would provide definitive confirmation.
+**Resolution:** The skeleton expansion interpretation provides strong theoretical support. The 1PI effective action $\Gamma[\phi]$ satisfies Slavnov-Taylor identities by construction. Physical SCN = "use $\Gamma$ without Dyson resummation" inherits this gauge symmetry.
+
+**Outcome:** Physical SCN was falsified at ≥415σ before explicit 2-loop gauge invariance verification could be performed. The question is moot. See `scn_c2_investigation.ipynb`.

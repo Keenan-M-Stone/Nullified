@@ -18,11 +18,11 @@ Self-Containment Nullification (SCN) starts from a single set-theoretic axiom: *
 
 ### Consequential Discoveries (Independent of SCN)
 
-The investigation produced several results that stand on their own, unrelated to the SCN axiom:
+The investigation verified and explored several known results, and produced one original (albeit incomplete) contribution:
 
-- **θ₀ = 2/9 lepton mass formula**: The Koide parametrization with $\theta_0 = 2/N^2$ rad ($N=3$) reproduces all three charged lepton masses (electron, muon, tau) to **< 60 ppm** accuracy using a single free parameter $M$. This is not derived from SCN or any known principle.
-- **Koide formula Q = 2/3 derived from Z₃**: The Koide ratio is automatic for *any* $\theta_0$ when three masses are parametrized with $2\pi/3$ angular spacing — a trigonometric identity, not a dynamical prediction.
-- **Three generations from Z₃ periodicity**: The $2\pi/3$ angular structure wraps at $n=4$, naturally predicting exactly three generations with no fourth.
+- **θ₀ = 2/9 lepton mass formula** *(Brannen, 2005)*: The Koide parametrization with $\theta_0 = 2/9$ rad reproduces all three charged lepton masses to **< 60 ppm** accuracy with one free parameter $M$. This was discovered by Carl Brannen in 2005 and published in his 2006 paper "The Lepton Masses." We independently rediscovered and verified it but cannot claim priority. The notation $\theta_0 = 2/N^2$ ($N=3$) has also been noted by others (Żenczykowski 2013 refers to it as the "Brannen-Rosen" value).
+- **Koide formula Q = 2/3**: The Koide ratio is automatic for *any* $\theta_0$ in the cosine parametrization — a trigonometric identity, not a dynamical prediction. This is well-known and implicit in Koide's original work (1981) and the Foot geometric interpretation (1994).
+- **Closure condition derivation attempt** *(possibly novel)*: We proposed a specific mechanism — $N\theta_0 = (2\pi/N)/\pi = 2/N$ — to derive $\theta_0 = 2/N^2$ from a $\mathbb{Z}_3$ closure condition. The $1/\pi$ factor in this derivation is asserted, not proven, so this remains incomplete. We have not found this specific argument in prior literature, but it is not rigorous enough to constitute a result.
 - **SCN operator algebra**: The SCN operator is idempotent, multiplicative, and nonlinear, with an induced algebra isomorphic to the dual numbers $\mathbb{R}[\varepsilon]/(\varepsilon^2)$. A parallel to BRST cohomology was identified (both use nilpotent operators to separate physical from unphysical states).
 
 ### Reusable Code
@@ -40,7 +40,7 @@ This infrastructure could be reused by anyone exploring alternative perturbative
 This study suggests that the productive directions lie in areas SCN was *pointing toward* rather than SCN itself:
 
 - **Non-perturbative self-consistency** (Dyson-Schwinger equations, functional RG) is the real physics of self-referential propagators — but this is a mature field, not a new insight.
-- **The θ₀ = 2/9 mass formula** is unexplained and may be worth pursuing independently of any axiomatic framework. The $Z_3$ structure connecting Koide's formula to three generations is suggestive but ungrounded.
+- **The θ₀ = 2/9 mass formula** (Brannen, 2005) is unexplained and may be worth pursuing independently of any axiomatic framework. The $Z_3$ structure connecting Koide's formula to three generations is suggestive but ungrounded. See Brannen (2006), Żenczykowski (2013, PhysRevD), and Sheppeard (2017) for prior work.
 - **Novel set-theoretic axioms** applied to *mathematical* structures (not physics) may be the one domain where the SCN axiom contributes something genuinely new.
 - **Falsification methodology**: the approach of starting from a bold axiom, mapping it systematically to physics, and testing it to destruction is itself a template for exploring speculative ideas rigorously.
 
@@ -132,10 +132,10 @@ python -c "from src.engine.pipeline import run_full_analysis; print(run_full_ana
 
 | Observable | Result | Status |
 |-----------|--------|--------|
-| Koide formula Q = 2/3 | **Derived** (automatic for any θ₀) | ✓ Novel |
-| Lepton masses (all 3) | **< 60 ppm** with 1 free parameter | ✓ Novel |
-| θ₀ = 2/N² (N=3) | **Matches fitted value to 3 ppm** | ✓ Novel |
-| Three generations | **Predicted** from Z₃ periodicity | ✓ Novel |
+| Koide formula Q = 2/3 | **Automatic** for any θ₀ in cosine parametrization | Known (Koide 1981) |
+| Lepton masses (all 3) | **< 60 ppm** with 1 free parameter | Brannen (2005) |
+| θ₀ = 2/N² (N=3) | **Matches fitted value to 5 ppm** | Brannen (2005) |
+| Three generations | Inherent in Z₃ parametrization | Known |
 | Quark Koide formula | **Fails** (Q ≈ 0.85 / 0.73) | ✗ Open |
 
 > **Note on 1-loop agreement**: Physical SCN is *defined* to agree with standard QFT at 1-loop (it preserves all 1PI self-energy diagrams). This is a consistency check, not evidence for SCN. The first non-trivial test is at 2-loop.
@@ -156,9 +156,9 @@ The SE-insertion class contributes a nonzero $C_2^{SE} \neq 0$ to the magnetic f
 
 See `Theory/scn_c2_investigation.ipynb` for the full computation.
 
-### θ₀ = 2/9 — Lepton Mass Formula (Independent of SCN)
+### θ₀ = 2/9 — Lepton Mass Formula (Brannen, 2005; Independent of SCN)
 
-The Koide parametrization $\sqrt{m_n} = M(1 + \sqrt{2}\cos(\theta_0 + 2\pi n/3))$ with the choice $\theta_0 = 2/N^2$ rad (where $N = 3$ is the Z₃ rank) reproduces all three charged lepton masses with **one free parameter** $M$:
+The Koide parametrization $\sqrt{m_n} = M(1 + \sqrt{2}\cos(\theta_0 + 2\pi n/3))$ with the choice $\theta_0 = 2/9$ rad (discovered by Carl Brannen in 2005) reproduces all three charged lepton masses with **one free parameter** $M$:
 
 | Lepton | Predicted (MeV) | Measured (MeV) | Error |
 |--------|----------------|----------------|-------|
@@ -187,9 +187,9 @@ The SCN operator has been characterized as idempotent, multiplicative, and nonli
 - [x] **QED analysis** — Tree-level (identical), 1-loop classification (all 1PI diagrams survive under Physical SCN)
 - [x] **QCD analysis** — Physical SCN preserves asymptotic freedom (gluon self-energy 1PI diagrams survive)
 - [x] **Simulation code** — `src/` modules: particles, diagrams, scn_filter, cross_sections, experimental_data, run_comparison
-- [x] **Koide formula derived from Z₃** — Q = 2/3 automatic for any θ₀ via trigonometric identity (independent of SCN)
-- [x] **θ₀ = 2/9 discovery** — Matches fitted value to 3 ppm; all lepton masses reproduced to < 60 ppm with 1 free parameter (independent of SCN)
-- [x] **Three generations predicted** — Z₃ periodicity in nesting depth (n=4 wraps to n=1) (independent of SCN)
+- [x] **Koide Q = 2/3 verified** — Automatic for any θ₀ in cosine parametrization; well-known since Koide (1981)
+- [x] **θ₀ = 2/9 verified** — Brannen's (2005) result independently reproduced; all lepton masses to < 60 ppm with 1 free parameter
+- [x] **Three generations from Z₃** — Inherent in the 2π/3-spaced parametrization (not a prediction)
 - [x] **SCN mathematical foundations** — Operator algebra (idempotent, nonlinear, multiplicative), dual number isomorphism, BRST parallel
 - [x] **Novelty confirmed** — SCN is genuinely new; no prior work under any name
 - [x] **Formulation comparison** — 4 SCN interpretations tested (Literal, Structural, Diagrammatic, Physical); only Physical SCN viable
@@ -221,5 +221,5 @@ See `Theory/scn_beyond_falsification.ipynb` for the full exploration.
 
 ### Open — Independent of SCN
 
-- [ ] **Derive θ₀ = 2/9 from first principles** — Currently fits perfectly but is not derived from any known principle
+- [ ] **Derive θ₀ = 2/9 from first principles** — Brannen's (2005) value fits perfectly but is not derived from any known principle
 - [ ] **Extend Koide to quarks** — Q = 0.849 up-type, Q = 0.731 down-type (fails); need explanation
