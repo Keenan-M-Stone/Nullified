@@ -2,6 +2,54 @@
 
 **Self-Containment Nullification (SCN) applied to Quantum Field Theory**
 
+## Abstract
+
+### The Idea
+
+Self-Containment Nullification (SCN) starts from a single set-theoretic axiom: *any set that contains itself must be the empty set* ($S \in S \Rightarrow S = \emptyset$). Applied to quantum field theory, this maps to a rule about Feynman diagrams — self-referential structures (where a propagator's correction feeds back into itself via the Dyson equation) should be nullified. The most viable physical interpretation, "Physical SCN," turned out to be equivalent to the **skeleton expansion**: compute perturbation theory using only skeleton diagrams with bare propagators, without iterating the Dyson equation. This was promising because it agreed with all of standard QFT at 1-loop, made a concrete testable prediction at 2-loop, and offered a novel principle connecting set theory to particle physics.
+
+### SCN-Related Findings
+
+- **Physical SCN is falsified** at ≥415σ by the electron anomalous magnetic moment at 2-loop. The self-energy insertion diagrams it removes contribute $C_2^{SE} \approx 0.77$ to the $g\text{-}2$ coefficient, and even $C_2^{SE} = 10^{-5}$ is excluded.
+- **No-go theorem**: *any* SCN variant that removes a non-empty set of Feynman diagrams is falsified, because every diagram is needed to match the experimentally verified result ($C_2 = -0.328\,478\,965\,579\ldots$, confirmed to 10 significant figures).
+- **No viable reinterpretation exists** in physics. The "constraint" version ($S \in S \Rightarrow S = S^*$) is tautological — it reduces to "solve your equations" in every domain (Dyson-Schwinger in QFT, Einstein equations in GR, stabilizer formalism in quantum computing).
+- **No computational speedup**: SCN-as-a-filter selects the same diagram subset as the standard skeleton expansion (Weinberg Ch.12), providing no novel advantage over existing methods.
+- **SCN is genuinely novel** in one domain only: **foundations of mathematics**, where $S \in S \Rightarrow S = \emptyset$ is a logically distinct axiom from both ZFC-Regularity (which forbids $S \in S$ entirely) and Aczel's Anti-Foundation Axiom (which allows it freely). Whether this produces interesting theorems is an open question.
+
+### Consequential Discoveries (Independent of SCN)
+
+The investigation produced several results that stand on their own, unrelated to the SCN axiom:
+
+- **θ₀ = 2/9 lepton mass formula**: The Koide parametrization with $\theta_0 = 2/N^2$ rad ($N=3$) reproduces all three charged lepton masses (electron, muon, tau) to **< 60 ppm** accuracy using a single free parameter $M$. This is not derived from SCN or any known principle.
+- **Koide formula Q = 2/3 derived from Z₃**: The Koide ratio is automatic for *any* $\theta_0$ when three masses are parametrized with $2\pi/3$ angular spacing — a trigonometric identity, not a dynamical prediction.
+- **Three generations from Z₃ periodicity**: The $2\pi/3$ angular structure wraps at $n=4$, naturally predicting exactly three generations with no fourth.
+- **SCN operator algebra**: The SCN operator is idempotent, multiplicative, and nonlinear, with an induced algebra isomorphic to the dual numbers $\mathbb{R}[\varepsilon]/(\varepsilon^2)$. A parallel to BRST cohomology was identified (both use nilpotent operators to separate physical from unphysical states).
+
+### Reusable Code
+
+The codebase provides a working framework for testing alternative diagram-selection rules against precision QED/QCD observables:
+
+- **`src/scn_models.py`** — Pluggable model architecture: define `_is_self_containing()` to create any new diagram-filtering rule and immediately test it against $g\text{-}2$, Lamb shift, $\beta_0$, and cross-sections via the common API.
+- **`src/engine/`** — Simulation engine: diagram topology generation, Passarino-Veltman loop integrals, amplitude computation, and end-to-end pipeline for 1- and 2-loop QED.
+- **`src/observables.py`** — Model-parameterized observable calculations enabling batch evaluation and parameter sweeps.
+
+This infrastructure could be reused by anyone exploring alternative perturbative truncation schemes, diagram resummation strategies, or phenomenological filtering rules — though the no-go theorem places strong constraints on what can work.
+
+### What to Consider Instead
+
+This study suggests that the productive directions lie in areas SCN was *pointing toward* rather than SCN itself:
+
+- **Non-perturbative self-consistency** (Dyson-Schwinger equations, functional RG) is the real physics of self-referential propagators — but this is a mature field, not a new insight.
+- **The θ₀ = 2/9 mass formula** is unexplained and may be worth pursuing independently of any axiomatic framework. The $Z_3$ structure connecting Koide's formula to three generations is suggestive but ungrounded.
+- **Novel set-theoretic axioms** applied to *mathematical* structures (not physics) may be the one domain where the SCN axiom contributes something genuinely new.
+- **Falsification methodology**: the approach of starting from a bold axiom, mapping it systematically to physics, and testing it to destruction is itself a template for exploring speculative ideas rigorously.
+
+### Current Uses of SCN
+
+As of now, SCN has exactly one demonstrated use: it is a **logically distinct axiom in set theory** ($S \in S \Rightarrow S = \emptyset$) that sits between ZFC's regularity (forbids self-membership) and AFA (allows it freely). It is not useful for physics, computation, or any applied domain. Its value is as a case study in how a simple principle can be systematically tested and falsified.
+
+---
+
 An exploratory framework that starts from a single set-theoretic axiom — *any set that contains itself reduces to the empty set* — and develops its consequences for QED and QCD.
 
 ## The Axiom
@@ -30,7 +78,9 @@ Nullified/
 │   ├── Motivation.md                    # Original motivating conversation (Q&A)
 │   ├── scn_investigations.ipynb         # Koide/θ₀ verification, 1/π, Soft SCN QCD
 │   ├── scn_foundations.ipynb            # SCN operator algebra, geometry, calculus
-│   └── scn_formulations.ipynb           # Systematic comparison of 4 SCN interpretations
+│   ├── scn_formulations.ipynb           # Systematic comparison of 4 SCN interpretations
+│   ├── scn_c2_investigation.ipynb       # Definitive C₂ falsification proof
+│   └── scn_beyond_falsification.ipynb   # Modified variants, other domains, applicability
 ├── src/                                 # Simulation code
 │   ├── particles.py                     # Particle state representations
 │   ├── diagrams.py                      # Feynman diagram graph model
@@ -124,7 +174,7 @@ The SCN operator has been characterized as idempotent, multiplicative, and nonli
 
 ## Status
 
-This is an **exploratory/theoretical** project. Four SCN interpretations have been tested; only **Physical SCN** (skeleton expansion) is viable. The framework agrees with standard QFT at 1-loop by construction. The make-or-break test is computing C₂^PHY at 2-loop. The Koide/θ₀ discoveries are interesting but **independent of SCN**. See `Theory/06_open_questions.md` for the full risk register and open questions.
+**FALSIFIED.** Physical SCN is falsified at ≥415σ. All removal variants fail (no-go theorem). The constraint reinterpretation is tautological — equivalent to existing methods in every physics domain. No computational speedup beyond standard skeleton expansion. The only domain where SCN is genuinely novel is foundations of mathematics. See `Theory/06_open_questions.md` for the full risk register and open questions.
 
 ---
 
@@ -149,28 +199,27 @@ This is an **exploratory/theoretical** project. Four SCN interpretations have be
 - [x] **C₂ diagram classification** — 3/7 two-loop vertex diagrams nullified, 4/7 survive; sensitivity: 10⁵σ
 - [x] **Gauge invariance argument** — 1PI effective action satisfies Slavnov-Taylor identities; Physical SCN inherits this
 
-### Open — Critical (Must Do)
+### Completed — Falsification
 
-- [ ] **Compute C₂^PHY** — The make-or-break test. Must compute the 2-loop anomalous magnetic moment using only the 4 surviving skeleton diagrams. If C₂^PHY ≠ C₂^std = −0.3285..., Physical SCN is falsified.
-- [ ] **Fix code inconsistency** — `g2_components(2)` uses hand-coded tables that don't match `classify()` output. Simulation engine must handle subdiagram analysis properly.
-- [ ] **Build simulation engine** — Generate diagram topologies, classify with proper subdiagram analysis, compute loop integrals, handle SCN-simplified renormalization.
+- [x] **C₂ computed** — Physical SCN (skeleton expansion) falsified at ≥415σ by electron g-2
+- [x] **No-go theorem** — *Any* removal-type SCN variant is falsified (every 2-loop diagram is needed)
 
-### Open — Theory
+### Post-Falsification Exploration
 
-- [ ] **Derive θ₀ = 2/9 from first principles** — Currently fits perfectly but is not derived from any known principle. The 1/π factor (θ₀/(2π/3) = 1/3π) may come from angular integration.
-- [ ] **Extend to quarks** — Koide fails for quarks (Q = 0.849 up-type, Q = 0.731 down-type). Need either a modified formula or an explanation of why confinement breaks the Z₃ structure.
-- [ ] **Unitarity check** — Verify the optical theorem holds under skeleton expansion (expected: yes, since 1PI effective action is unitary, but needs explicit confirmation).
-- [ ] **Ward–Takahashi identity at 2-loop** — Explicit computation to confirm gauge invariance at higher orders (theoretical argument exists but not verified by calculation).
-- [ ] **Explicit 2-loop gauge invariance** — Compute in both standard and background field formalisms. The 1PI argument must hold diagram-by-diagram.
+- [x] **Modified variants explored** — Fixed-Point SCN, Graded Null SCN, Constraint SCN analyzed
+- [x] **Other domains surveyed** — Quantum gravity, GR, QCD, quantum computing, mathematics
+- [x] **Speedup analysis** — SCN-as-filter selects same diagrams as skeleton expansion (standard QFT); no novel speedup
 
-### Open — Computation
+See `Theory/scn_beyond_falsification.ipynb` for the full exploration.
 
-- [ ] **Soft SCN for QCD** — Momentum-dependent suppression η(μ) = 1 − exp(−μ²/Λ²) partially recovers AF (Λ_SCN ≈ 0.1 GeV); less relevant now that Physical SCN preserves AF natively
-- [ ] **BRST–SCN cohomology** — Formalize the connection: is SCN a nonlinear generalization of BRST?
-- [ ] **Electroweak extension** — Apply SCN to the Higgs sector
+### Key Findings
 
-### Stretch Goals (Paper-Worthy)
+1. **No removal variant works** — any variant that removes diagrams from perturbative QFT (QED, QCD, electroweak) is falsified
+2. **The constraint reinterpretation is tautological** — SCN-Constraint ($S \in S \Rightarrow S = S^*$) just says "solutions must be self-consistent," which is the definition of a solution. In every physics domain it reduces to existing methods (DSE, Einstein equations, stabilizer formalism)
+3. **No computational speedup** — SCN selects the same diagram subset as the standard skeleton expansion (Weinberg Ch.12), providing no novel advantage
+4. **Only genuinely novel in pure mathematics** — $S \in S \Rightarrow S = \emptyset$ is a logically distinct axiom from both ZFC-Regularity and Aczel's AFA
 
-- [ ] **C₂^PHY matches experiment** — If the 4 surviving skeleton diagrams reproduce C₂^std, this would be a non-trivial prediction
-- [ ] **SCN as a regularization scheme** — Prove that skeleton expansion leads to simpler renormalization (only Z₃ counterterms at 1-loop)
-- [ ] **Compute a cross-section without a supercomputer** — Show that SCN's diagram reduction makes higher-order calculations tractable
+### Open — Independent of SCN
+
+- [ ] **Derive θ₀ = 2/9 from first principles** — Currently fits perfectly but is not derived from any known principle
+- [ ] **Extend Koide to quarks** — Q = 0.849 up-type, Q = 0.731 down-type (fails); need explanation
