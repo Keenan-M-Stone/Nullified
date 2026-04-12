@@ -129,3 +129,69 @@ The most promising concrete application — and the one most likely to produce a
 3. Comparison to experiment and to standard truncation.
 
 This is a *computational* question, not a *proof* question. We either fit the data or we don't.
+
+---
+
+## Findings: computational tests of $\mathcal{N}_\lambda$ on perturbation theory
+
+We carried out the tests outlined above. Code is in `src/graded_scn.py`; analysis is in `Expansions/graded_scn_g2_exploration.ipynb`. Below is an honest record of what worked, what failed, and what we learned.
+
+### QED: electron $g-2$
+
+**Loop-order attenuation** ($a_e = \sum C_n (\alpha/\pi)^n / \lambda^n$):
+- This is trivially equivalent to rescaling $\alpha \to \alpha/\lambda$.
+- Optimal $\lambda = 1.000$: attenuation makes things worse at every other value.
+- The QED series converges extremely well ($|C_n (\alpha/\pi)^n| < 10^{-12}$ at 3-loop), so there is nothing for attenuation to improve.
+
+**Nesting-depth attenuation** (weight diagrams by $\lambda^{-\sigma_\text{nest}}$):
+- At 2-loop, self-energy insertion diagrams contribute $C_2^{\text{SE}} = +0.77$ (positive) and skeleton diagrams contribute $C_2^{\text{skel}} = -1.10$ (negative).
+- Suppressing SE insertions with $\lambda > 1$ moves $a_e$ *away* from experiment, not toward it.
+- The SE diagrams are needed to reproduce the observed value — they are not pathological.
+
+**Verdict**: QED is the wrong target. The series is too well-behaved for any form of attenuation.
+
+### QCD: $R_\tau$ (hadronic $\tau$ decay)
+
+The FOPT coefficients $K_1 = 1, K_2 = 5.2, K_3 = 26.4, K_4 = 127.1$ grow by $\sim 5\times$ per order.
+
+**Using the world-average $\alpha_s(m_\tau) \approx 0.330$**:
+- Standard FOPT through $\alpha_s^4$: $R_\tau = 3.507$ (experiment: $3.477 \pm 0.011$), deviation $\sim 2.7\sigma$.
+- Using our 1-loop running gives $\alpha_s(m_\tau) = 0.352$, which overshoots to $R_\tau = 3.582$ ($9.5\sigma$). The excess is from 1-loop running being too crude at the $m_\tau$ scale, not from the perturbative series itself.
+
+**Loop-order attenuation**:
+- Optimal $\lambda$ shifts across truncation orders: $\lambda^* = 0.57$ at $O(\alpha_s)$, $0.92$ at $O(\alpha_s^2)$, $1.05$ at $O(\alpha_s^3)$, $1.10$ at $O(\alpha_s^4)$.
+- A consistent physical parameter must be stable. This one isn't. It's curve-fitting.
+
+**Nesting-depth $\beta_0$ attenuation**:
+- $\beta_0(\lambda) = 10/\lambda + 1 - 2n_f/3$. At $\lambda^* \approx 1.05$, barely different from standard.
+- No meaningful improvement over $\lambda = 1$.
+
+### QCD: $\alpha_s(Q)$ running
+
+Twelve experimental measurements from $Q = 1.8$ to $206\ \text{GeV}$.
+
+**Standard 1-loop**: $\chi^2/\text{ndf} = 0.77$ (0 free parameters) — already a good fit.
+
+**Attenuated 1-loop** (scan $\lambda$ for $\beta_0(\lambda)$):
+- Optimal $\lambda^* \approx 0.96$, giving $\chi^2/\text{ndf} \approx 0.36$.
+- $\lambda < 1$ means **enhanced** gluon self-energy contribution, the *opposite* of what SCN (suppression of self-reference) predicts.
+- Even ignoring direction, the improvement over standard ($0.77 \to 0.36$) costs 1 extra parameter and does not pass the bar for a genuinely new physical effect — it's within the range explained by ordinary 2-loop corrections ($\chi^2/\text{ndf} \approx 0.63$ with 0 free parameters).
+
+### Bug found and fixed
+
+During this analysis, we discovered a normalization bug in `alpha_s_running_1loop`: the denominator used $2\pi$ instead of the correct $4\pi$ (given our convention $\beta_0 = 11 - 2n_f/3$). This made standard 1-loop look far worse than it is ($\chi^2/\text{ndf} = 197$ instead of $0.77$) and made the attenuated version look dramatically better. The "fit improvement" that initially seemed exciting ($\lambda = 1.63$, $\chi^2/\text{ndf} = 0.7$) was entirely compensating for the factor-of-2 error in the running rate. After correction, no meaningful improvement remains.
+
+### Structural lessons
+
+1. **$\mathcal{N}_\lambda$ is ineffective when perturbation theory already converges.** Both QED (spectacular convergence) and QCD at $n \leq 4$ (still converging, despite $K_n$ growth) produce series that standard truncation handles adequately. The attenuation operator is designed for the asymptotic regime ($K_n \sim n!$), which current QCD calculations haven't reached.
+
+2. **Loop-order attenuation is degenerate with coupling rescaling.** In any series $\sum c_n g^n$, weighting by $\lambda^{-n}$ is equivalent to $g \to g/\lambda$. This is not new physics — it's a reparametrization.
+
+3. **Nesting-depth attenuation of $\beta_0$ is more interesting structurally** (it distinguishes self-referential contributions to the $\beta$-function) **but empirically vacuous** — the data either doesn't need it ($\lambda^* \approx 1$) or prefers the wrong sign ($\lambda < 1$).
+
+4. **Convention bugs in running formulas are easy to introduce** and can produce misleadingly good fits. Always cross-check analytical formulas against numerical RGE integration.
+
+### What remains open
+
+- QCD perturbation theory at large order ($n \gg 5$), where factorially growing coefficients ("renormalons") dominate. $\mathcal{N}_\lambda$ might genuinely compete with Borel resummation here, but this regime is not yet experimentally accessible at the precision needed.
+- Non-perturbative applications: the framework's value may ultimately lie in the algebraic structure (filtrations, associated graded rings) rather than in numerical prediction of observables.
